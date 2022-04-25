@@ -18,12 +18,12 @@ As a result, I will write mostly about these platforms, but fortunately there ar
 I may not write very often, because we all have limited time and I want to keep most of my time reserved for my projects. I have so much to learn ! But when I find something interesting, I will try and write an article about it !
 
 ## Hackintosh
-I discovered IT when my parents gave me their old Compaq laptop. It had an 32 bits Intel Pentium, and it was already several years old. \
-Around 2012, my parents had their first iPhone (4 & 4s) and that's how I discovered Apple. About 2 years later, I was already a dedicated Apple fan, but I only knew about iPhone and iPad. And one day, a friend of mine told me about her Mac, and I said "A Mac, what's that ?"\
+I discovered IT when my parents gave me their old Compaq laptop. It had a 32 bits Intel Pentium, and it was already several years old. \
+Around 2012, my parents had their first iPhones (4 & 4s) and that's how I discovered Apple. About 2 years later, I was already a dedicated Apple fan, but I only knew about iPhone and iPad. And one day, a friend of mine told me about her Mac, and I said "A Mac, what's that ?"\
 That's how I discovered that Apple was also making Macs, and I wanted one too. But my parents had a Toshiba PC running Windows 7, and it was not in their plans to buy a Mac anytime soon.\
-And then, one of my cousin told me about Hackintosh, which he had seen a video about on YouTube ; and I decided to give it a try.\
-Of course, it was an absolute failure at that time, I knew absolutely nothing about IT in general, but I didn't give up. Searching for alternative OSs to Windows, I discovered Linux, which I installed on my Compaq. I started to learn a lot, and things stayed like that for a few years.\
-And at the end of 2016, Apple released their famous MacBook Pro with TouchBar, and since I had been  trying to run macOS on my PC without any success despite months of efforts, my mother decided to make me a wonderful present, and she purchased a 15 inch MacBook Pro for my family.\
+Then, one of my cousin told me about Hackintosh, which he had seen a video about on YouTube ; and I decided to give it a try.\
+Of course, it was an absolute failure because at that time, I knew absolutely nothing about IT in general, but I didn't give up. Searching for alternative OSs to Windows, I discovered Linux, which I installed on my Compaq. I started to learn a lot, and things stayed like that for a few years.\
+At the end of 2016, Apple released their famous MacBook Pro with TouchBar, and since I had been  trying to run macOS on my PC without any success despite months of efforts, my mother decided to make me a wonderful present, and she purchased a 15 inch MacBook Pro for our family.\
 ![img-decription](MacBookPro.png){: width="345" height="322" }
 _The Silver 15 inch 2016 MacBook Pro_
 Things started to get serious around this time, as I could get my hands on a real Mac. I discovered that macOS was even better than I could imagine :) and I really learnt a lot more about Macs.\
@@ -37,6 +37,7 @@ I've used an iPhone 7 on iOS 11.2.6 because I wanted to use Bazad's incredible B
 At the end of the summer 2021, Iris for iOS 11 was ready, with a binpack and an ssh server, so I decided to port it to iOS 13.7, which worked fine after some modifications.\
 I am now planning to include a proper bootstrap with Procursus + Sileo, but I'm feeling a bit lazy to patch CoreTrust right now :) But I will most probably do it one day.
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I’ve successfully ported Iris to iOS 13.0-13.7 using <a href="https://twitter.com/OdysseyTeam_?ref_src=twsrc%5Etfw">@OdysseyTeam_</a>’s version of cicuta_virosa. Remount works fine and SSH too ! 🥳 <a href="https://t.co/pubNfXhUEw">pic.twitter.com/pubNfXhUEw</a></p>&mdash; MachXNU (@MachXNU) <a href="https://twitter.com/MachXNU/status/1431345725904928774?ref_src=twsrc%5Etfw">August 27, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+I will open source it once my exams are done.
 
 ## My devices
 Over time, I have purchased/picked up several Apple devices, so my collection now is :
