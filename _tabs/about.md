@@ -6,7 +6,7 @@ order: 4
 ---
 
 ## Introduction
-Hello, and welcome to my blog ! You will find here explanations and tutorials about what I like doing on iOS and macOS.
+Hello, and welcome to my blog ! Here you will find explanations and tutorials about what I like doing on iOS and macOS.
 
 ## My goal
 I hope to publish here all the info I wish I had found online when I needed it. \
