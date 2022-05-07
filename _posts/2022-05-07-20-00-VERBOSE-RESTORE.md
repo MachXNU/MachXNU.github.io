@@ -59,4 +59,61 @@ I also followed [@mcg29_](https://twitter.com/mcg29_)'s [dualboot guide](https:/
 Here are the tools you need for this project (I recommend you copy the compiled executables to `/usr/local/bin` on your Mac to always have them in your path) :
 * [img4lib](https://github.com/xerub/img4lib) aka `img4` by @xerub
 * [kairos](https://github.com/dayt0n/kairos) by @dayt0n
-* 
+* [Kernel64Patcher](https://github.com/Ralph0045/Kernel64Patcher) by @Ralph0045
+* ldid2 (install it with `brew install ldid2`)
+* [asr64_patcher](https://github.com/exploit3dguy/asr64_patcher) by @md
+* idevicerestore (compile everything with [this](https://gist.github.com/matteyeux/d7d8041a41ee8d664aaf5c3b99556ada) by @matteyeux)
+
+## Before you begin
+If you're not really familiar with iOS boot/restore processes, I recommend you first do the following :
+1. Restore a normal IPSW with `idevicerestore` and read the log
+2. Read the [dualboot guide](https://dualbootfun.github.io/dualboot/) by [@Ralph0045](https://twitter.com/Ralph0045) and [@Ralph0045](https://twitter.com/mcg29_) and try it yourself 
+3. Verbose boot your iPhone. It's an absolutely basic thing you MUST master well. It's trivial, but do it by hand, not with checkra1n :)
+
+## Let's get started
+### The general idea of the operation
+1. Extract a release IPSW (the latest one, which can be restored without blobs). While it is theoretically possible to restore with `futurerestore` to an unsigned version, I didn't try it yet and can't confirm it works out of the box.
+2. Patch `iBSS` and `iBEC` to load custom images ; and replace them in the original IPSW.
+3. Patch the `kernelcache` to disable AMFI and replace it in the original IPSW.
+4. Extract the "update" ramdisk and locate `restored_update`.
+5. Patch UI routines in `restored_update`, restore its entitlements and fakesign it.
+6. Patch `asr` to force image validation.
+7. Pack back the ramdisk.
+8. Pack back the IPSW and restore it.
+
+> You are free to organise the project's folders as you wish, so be careful since your commands may vary from mine.\
+Copy-pasting is never a good idea, and you won't learn anything.\
+As for me, I've created a `restore` folder for all the stuffs with inside, the stock IPSW extracted in a folder called `stock`, and the modded IPSW in a folder called `modded`.
+{: .prompt-info }
+
+### Patching `iBSS` and `iBEC`
+If you have already verbose booted your iPhone, this part should look familiar to you.\
+
+> I'm using the kbag method to decrypt `iBSS` and `iBEC`. Thanks to this, I don't rely on keys from The iPhone Wiki.
+{: .prompt-info }
+
+For `iBSS` (for example), first extract its kbag
+```bash
+img4 -i iBSS.*.RELEASE.im4p -b
+```
+The kbag is the first line in the output.\
+Then, place your iPhone in DFU mode, exploit it with `./ipwndfu -p` but don't remove sigchecks yet ! Instead, run :
+```bash
+./ipwndfu --decrypt-gid=<kbag>
+```
+This is the decrypted kbag (aka `dkbag`). We can now use it to decrypt `iBSS` :
+```bash
+img4 -i iBSS.*.RELEASE.im4p -o ibss.raw -k <dkbag> 
+```
+
+Then patch it with `kairos` :
+```bash
+kairos ibss.raw ibss.pwn
+```
+And pack it back to `im4p` :
+```bash
+img4 -i ibss.pwn -o ibss.im4p.pwn -A -T ibss
+```
+
+> Note that unlinke
+{: .prompt-warning }
