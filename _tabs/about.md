@@ -46,9 +46,14 @@ Over time, I have purchased/picked up several Apple devices, so my collection no
 * M1 MacBook Air _(my everyday Mac, I love it)_
 * iPhone 3Gs, iOS 6.1.6
 * iPhone 4, iOS 7.1.2 _(my mother's first iPhone)_
+* iPhone 5, iOS 10.3.4
 * iPhone 5s, iOS 12.5.5 _(good for checkm8 experiments !)_
+* iPhone 6, iOS 12.4.4 semi-iCloud locked
 * iPhone SE, iOS 13.3.1
 * iPhone 7, iOS 11.2.6
 * iPhone X, iOS 13.7 
+* iPad 3, iOS 9.3.5
+* iPad 4, iOS 10.3.3
+* iPad mini 1, iOS 9.3.5
 
 _And still looking for more devices !_
