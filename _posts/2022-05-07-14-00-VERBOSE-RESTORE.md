@@ -37,24 +37,24 @@ This sounds simple, but since we are patching things out, we're breaking the cha
 
 #### What do we have to patch ?
 During a restore, the restore software (either iTunes, `idevicerestore`, `futurerestore` or whatever) sends a ramdisk, among other files. \
-An IPSW contains 2 ramdisks, one for each restore type (their exact name can be found on [The iPhone WIki](https://www.theiphonewiki.com), in the Firmware Keys section).\
+An IPSW contains 2 ramdisks, one for each restore type (their exact name can be found on [The iPhone Wiki](https://www.theiphonewiki.com), in the Firmware Keys section).\
 Inside the ramdisks, at path `/usr/local/bin` is a Mach-O executable which effectively performs the restore operations on the device side (the PC also plays its role, but the iPhone's restore code is located in this executable). \
 For "erase" variants, this executable is called `restored_external` while in "update" variants, it's called `restored_update`.\
-This is the executable we need to patch : it's responsible for eprforming the restore but also handles the UI part (displaying the Apple logo and the progress bar)
+This is the executable we need to patch : it's responsible for performing the restore but also handles the UI part (displaying the Apple logo and the progress bar).
 
 #### Some more complications
 Of course, it would be too easy to just patch this executable, repack the IPSW and restore it, right ?\
-That's because, when patching `restored_update`, we altered its signature. Of course, we will fakesign it with `ldid2` but the kernel, if unpatched, will reject its signature.\
+That's because, when patching `restored_update`, we altered its signature. Of course, we will fakesign it with `ldid2` but the kernel, if unpatched, will reject this signature.\
 So we need to patch the kernel (we'll see how to do this later on). But patching the kernel alters its signature, so `iBEC` won't load it. We thus need to patch both `iBSS` and `iBEC` and this brings us back to **checkm8** !\
-Patching signature validations if what will make everything possible.\
+Patching signature validations if what will make everything possible.
 
 > Since we are flashing patched `iBSS` and `iBEC` to our device, these images won't be validated if SecureROM is not patched. In other words, after this restore, you'll have to tether boot your device.\
-However, this can be easily reverted by restoring a normal IPSW : this will falsh valid boot images, which will be booted untethered.
+However, this can be easily reverted by restoring a normal IPSW : this will flash valid boot images, which will be booted untethered.
 {: .prompt-danger }
 
 #### Credits
 As I mentionned earlier, I got the idea to do this project thanks to [@nyan_satan](https://twitter.com/nyan_satan)'s blog post.\
-I also followed [@mcg29_](https://twitter.com/mcg29_)'s [dualboot guide](https://dualbootfun.github.io/dualboot/) for learning how to load a custom bootchain.
+I also followed [@mcg29\_](https://twitter.com/mcg29_)'s [dualboot guide](https://dualbootfun.github.io/dualboot/) for learning how to load a custom bootchain.
 
 ## Requirements
 Here are the tools you need for this project (I recommend you copy the compiled executables to `/usr/local/bin` on your Mac to always have them in your path) :
@@ -67,8 +67,8 @@ Here are the tools you need for this project (I recommend you copy the compiled 
 
 ## Before you begin
 If you're not really familiar with iOS boot/restore processes, I recommend you first do the following :
-1. Restore a normal IPSW with `idevicerestore` and read the log
-2. Read the [dualboot guide](https://dualbootfun.github.io/dualboot/) by [@Ralph0045](https://twitter.com/Ralph0045) and [@Ralph0045](https://twitter.com/mcg29_) and try it yourself 
+1. Restore a normal IPSW with `idevicerestore` and read the log.
+2. Read the [dualboot guide](https://dualbootfun.github.io/dualboot/) by [@Ralph0045](https://twitter.com/Ralph0045) and [@Ralph0045](https://twitter.com/mcg29_) and try it yourself.
 3. Verbose boot your iPhone. It's an absolutely basic thing you MUST master well. It's trivial, but do it by hand, not with checkra1n :)
 
 ## The general idea
@@ -87,7 +87,7 @@ As for me, I've created a `restore` folder for all the stuffs with inside, the s
 {: .prompt-info }
 
 ## Patching `iBSS` and `iBEC` 
-If you have already verbose booted your iPhone, this part should look familiar to you.\
+If you have already verbose booted your iPhone, this part should look familiar to you.
 
 > I'm using the kbag method to decrypt `iBSS` and `iBEC`. Thanks to this, I don't rely on keys from The iPhone Wiki.
 {: .prompt-info }
@@ -139,14 +139,14 @@ You can find a complete list of all possible tags [here](https://www.theiphonewi
 Finally, replace the kernel inside the IPSW with your patched one.
 
 ## Patching the ramdisk
-First, let's prepare the ramdisk to access its content.\
+First, let's prepare the ramdisk to access its content.
 ```bash
 img4 -i <update-ramdisk> -o ramdisk.dmg
 ```
-Then mount the ramdisk (either double-click on the dmg, or use `hdiutil`)
+Then mount the ramdisk (either double-click on the dmg, or use `hdiutil`).
 
 ## Patching UI routines
-That is the whole point of everything we want to do : disable UI routines.\
+That is the whole point of what we want to do : disable UI routines.\
 First, load `/usr/local/bin/restored-update` in Hopper and search for a function called `ramrod_display` (as @nyan_satan describes [here](https://nyansatan.github.io/verbose-restore/)).\
 ![Desktop View](ramrod.png){: .shadow }
 _Locate the \_ramrod\_display\_set\_progress function_
@@ -228,5 +228,5 @@ If you did everything carefully and correctly, you will see the complete restore
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I’ve successfully done a verbose restore on my iPhone 5s.<br>I followed <a href="https://twitter.com/nyan_satan?ref_src=twsrc%5Etfw">@nyan_satan</a>’s blog post to disable the graphical interface, and then modified the Update Ramdisk to load it with checkm8 <a href="https://t.co/WDmWTMequb">pic.twitter.com/WDmWTMequb</a></p>&mdash; MachXNU (@MachXNU) <a href="https://twitter.com/MachXNU/status/1520327253707706368?ref_src=twsrc%5Etfw">April 30, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## Conclusion
-I did my best to be as clear and explanatory as possible. However, if you're still having trouble, feel free to contact me on Twitter or Telegram and I'll do my best to help you !\
-And if you are thinking "Bruh, what a spoon-feeding guide for noobs", remember that you've once been a noob too, and explanations are never useless ! Before knowing somehing by heart, you had to learn it and my goal is to make this learning easier and faster !
+I tried to be as clear and explanatory as possible. However, if you're still having trouble, feel free to contact me on Twitter or Telegram and I'll do my best to help you !\
+And if you are thinking "Bruh, what a spoon-feeding tutorial for noobs", remember that you've once been a noob too, and explanations are never useless ! Before knowing somehing by heart, you had to learn it and my goal is to make this learning easier and faster !
