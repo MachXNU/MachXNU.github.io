@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://machxnu.github.io/posts/run-a-patched-executable-on-macOS/</loc>
+<lastmod>2022-04-24T12:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/posts/patch-an-executable-with-Python/</loc>
+<lastmod>2022-04-24T15:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/posts/verbose-restore-64-bits/</loc>
+<lastmod>2022-05-07T14:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/categories/</loc>
+<lastmod>2022-05-09T20:17:47+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/tags/</loc>
+<lastmod>2022-05-09T20:17:47+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/archives/</loc>
+<lastmod>2022-05-09T20:17:47+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/about/</loc>
+<lastmod>2022-05-09T20:17:47+02:00</lastmod>
+</url>
+<url>
+<loc>https://machxnu.github.io/</loc>
+</url>
+</urlset>
