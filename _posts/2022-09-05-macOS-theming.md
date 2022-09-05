@@ -1,6 +1,6 @@
 ---
 title: Fulling theming macOS Big Sur
-date: 2022-09-05 14:00:00 +0200
+date: 2022-09-05 20:50:00 +0200
 categories:  #[ TOP_CATEGORIE, SUB_CATEGORIE]
 tags: []     # TAG names should always be lowercase
 img_path : /2022-09-05-MACOS-THEMING
