@@ -23,7 +23,7 @@ timezone: Europe/Paris
 
 title: MachXNU                          # the main title
 
-tagline: Articles about my fun experiments on iOS and macOS   # it will display as the sub-title
+tagline: Articles and tutorials about iOS, macOS and Linux  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   
