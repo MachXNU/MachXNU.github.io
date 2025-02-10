@@ -102,10 +102,8 @@ That's because Buildroot uses `output/build/linux-x.x.x/.config` to configure li
 
 ### Automatically
 
-You can use this config patch that automatically enables these options.\
+You can use [this config patch](https://github.com/MachXNU/Engine-OS-on-Qemu/blob/main/enable-framebuffer.patch) that automatically enables these options.\
 We can tell Buildroot to apply these patches on top of its configuration before building the kernel.
-
-You can download it [here](https://github.com/MachXNU/Engine-OS-on-Qemu/blob/main/enable-framebuffer.patch).
 
 You can enable it in Buildroot by adding its path to the `BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES` variable in Buildroot.
 
