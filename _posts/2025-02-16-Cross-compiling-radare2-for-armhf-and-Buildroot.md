@@ -1,12 +1,12 @@
 ---
-title: Cross compiling radare2 for armhf and Buildroot
+title: Cross-compiling radare2 for armhf and Buildroot
 date: 2025-02-16 15:00:00 +0200
 categories:  #[ TOP_CATEGORIE, SUB_CATEGORIE]
 tags: []     # TAG names should always be lowercase
 ---
 
 ## Introduction
-In this article, we will learn how to compile [radare2](https://github.com/radareorg/radare2) for `armhf` using Buildroot's toolchain (note that this can be adapted to any other cross-toolchain you have, either you got it from your package manager, or with [Crosstool-NG](https://crosstool-ng.github.io)).
+In this article, we will learn how to compile [radare2](https://github.com/radareorg/radare2) for `armhf` using [Buildroot](http://buildroot.org)'s toolchain (note that this can be adapted to any other cross-toolchain you have, either you got it from your package manager, or with [Crosstool-NG](https://crosstool-ng.github.io)).
 
 _I assume you are familiar with Buildroot and already know how to use it to build a Linux system._
 
@@ -36,7 +36,10 @@ $ mkdir ~/buildroot/overlay
 Now, configure radare2 to use Buildroot's cross-compiler, and to output it to our overlay:
 ```bash
 $ cd ~/radare2
-$ CC=$HOME/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-gcc CFLAGS=-I$HOME/output/host/include LDFLAGS=-L$HOME/buildroot/output/host/lib ./configure --prefix=$HOME/buildroot/overlay/usr/local/r2 --target=armhf-buildroot-linux --host=armhf-buildroot-linux
+$ CC=$HOME/buildroot/output/host/bin/arm-buildroot-linux-gnueabihf-gcc \
+  CFLAGS=-I$HOME/output/host/include LDFLAGS=-L$HOME/buildroot/output/host/lib \
+  ./configure --prefix=$HOME/buildroot/overlay/usr/local/r2 \
+  --target=armhf-buildroot-linux --host=armhf-buildroot-linux
 $ make -j 8
 $ make install
 ```
@@ -69,3 +72,7 @@ $ r2
 Usage: r2 [-ACdfjLMnNqStuvwzX] [-P patch] [-p prj] [-a arch] [-b bits] [-c cmd]
           [-s addr] [-B baddr] [-m maddr] [-i script] [-e k=v] file|pid|-|--|=
 ```
+
+## Useful links
+- [https://book.rada.re/install/download.html](https://book.rada.re/install/download.html)
+- [https://github.com/radareorg/radare2/blob/master/doc/cross-compile.md](https://github.com/radareorg/radare2/blob/master/doc/cross-compile.md)
